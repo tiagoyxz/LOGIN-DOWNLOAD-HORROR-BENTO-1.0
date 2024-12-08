@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login e Registro</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Conectando ao styles.css -->
+</head>
+<body>
+
+<!-- Estilos CSS -->
+<style>
+/* Reset geral */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #0d0d0d; /* Fundo escuro */
+    color: #eaeaea; /* Texto claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container centralizado */
+.container {
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Imagem do Logo */
+#main-logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+/* Contêiner de formulários e botões */
+.form-container {
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Botões para alternar entre Login e Registro */
+.toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px; /* Aumentando a distância entre os botões e os campos */
+}
+
+.toggle-buttons button {
+    padding: 12px 24px;
+    font-size: 16px;
+    color: white;
+    background-color: #d51936;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    max-width: 160px;
+    margin: 0 5px;
+}
+
+.toggle-buttons button:hover {
+    background-color: #d51936;
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    /* Usando margens diretamente nos elementos de input e botão para garantir o espaçamento */
+}
+
+/* Inputs do formulário */
+form input {
+    padding: 12px;
+    background-color: #111;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #eaeaea;
+    font-size: 15px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box; /* Garante que o padding não ultrapasse a largura */
+    margin-bottom: 20px; /* Aumenta o espaçamento entre os campos */
+}
+
+form input:focus {
+    border-color: #d51936;
+}
+
+/* Botão de ação */
+form button {
+    padding: 12px;
+    background-color: #d51936;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 100%;
+    box-sizing: border-box; /* Garante que o botão não ultrapasse os limites */
+    margin-bottom: 20px; /* Adiciona espaçamento após o botão */
+}
+
+form button:hover {
+    background-color: #d51936;
+}
+
+/* Link do formulário */
+.form-footer a {
+    color: #d51936;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Formulários de Login e Registro (exclusivos) */
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+</style>
+
+<div class="container">
+    <!-- Imagem substituindo Bem-vindo -->
+    <img src="horror.png" alt="Logo Horror Bento" id="main-logo">
+    
+    <!-- Formulários de Login e Registro -->
+    <div class="form-container">
+        <!-- Botões para Alternar entre Login e Registro -->
+        <div class="toggle-buttons">
+            <button id="login-toggle" onclick="toggleForm('login')">Login</button>
+            <button id="register-toggle" onclick="toggleForm('register')">Registro</button>
+        </div>
+
+        <!-- Formulário de Login -->
+        <form id="login-form" class="form-section visible">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+            <div class="form-footer">
+                <a href="/forgot-password">Esqueceu a Senha?</a>
+            </div>
+        </form>
+        
+        <!-- Formulário de Registro -->
+        <form id="register-form" class="form-section hidden">
+            <input type="text" name="name" placeholder="Nome Completo" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <button type="submit">Criar Conta</button>
+            <div class="form-footer">
+                <a href="/login" onclick="toggleForm('login')">Já tem uma conta? Entrar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Script para Alternar os Formulários -->
+<script>
+    function toggleForm(formType) {
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const loginToggle = document.getElementById('login-toggle');
+        const registerToggle = document.getElementById('register-toggle');
+        
+        if (formType === 'login') {
+            // Torna o formulário de login visível e o de registro invisível
+            loginForm.classList.remove('hidden');
+            loginForm.classList.add('visible');
+            registerForm.classList.remove('visible');
+            registerForm.classList.add('hidden');
+            loginToggle.style.backgroundColor = '#d50c2a';
+            registerToggle.style.backgroundColor = '#d51936';
+        } else {
+            // Torna o formulário de registro visível e o de login invisível
+            registerForm.classList.remove('hidden');
+            registerForm.classList.add('visible');
+            loginForm.classList.remove('visible');
+            loginForm.classList.add('hidden');
+            registerToggle.style.backgroundColor = '#d50c2a';
+            loginToggle.style.backgroundColor = '#d51936';
+        }
+    }
+    
+    // Inicializa com o Login visível
+    toggleForm('login');
+</script>
+
+</body>
+</html>
